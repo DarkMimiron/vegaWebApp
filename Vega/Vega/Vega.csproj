@@ -22,8 +22,17 @@
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
         <Content Include="ClientApp\package-lock.json" />
+        <Content Include="ClientApp\src\components\Footer\Footer.js" />
+        <Content Include="ClientApp\src\components\NavBar\NavBar.js" />
+        <Content Include="ClientApp\src\components\NavBar\NavItems\NavItems.js" />
+        <Content Include="ClientApp\src\components\Vehicle\VehicleForm.js" />
+        <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\BrandsItem.js" />
+        <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\ModelsItem.js" />
+        <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\RegisteredItem.js" />
+        <Content Include="ClientApp\src\containers\VehiclePage\VehiclePage.js" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="ClientApp\src\containers\Layout\Layout.js" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
