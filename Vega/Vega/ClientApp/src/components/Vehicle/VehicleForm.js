@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Grid, MenuItem} from "@material-ui/core";
+import {Checkbox, FormControlLabel, Grid, MenuItem} from "@material-ui/core";
 import axios from "axios";
 
 import BrandsItem from './VehicleFormItems/BrandsItem';
 import ModelsItem from './VehicleFormItems/ModelsItem';
 import RegisteredItem from './VehicleFormItems/RegisteredItem';
+import FeaturesItem from './VehicleFormItems/FeaturesItem';
 
 class VehicleForm extends Component {
     static displayName = VehicleForm.name;
@@ -22,13 +23,28 @@ class VehicleForm extends Component {
         models: [],
         selectedModelId: 0,
         withBrand: false,
-        isRegistered: "no"
+        isRegistered: "no",
+        features: [],
+        selectedFeatures: []
     };
 
     componentDidMount() {
         axios.get("/api/brands")
             .then(response => {
                 this.setState({brands: response.data});
+            });
+        
+        axios.get("/api/features")
+            .then(response => {
+                this.setState({features: response.data});
+                let featuresData = response.data.map(feature => {
+                    return {
+                        id: feature['id'],
+                        name: feature['name'],
+                        selected: feature['selected'] || false
+                    }
+                });
+                this.setState({selectedFeatures: featuresData});
             });
     }
 
@@ -61,21 +77,44 @@ class VehicleForm extends Component {
       });
     };
     
+    handleFeatureChange = id => event => {
+        let selectedFeatures = this.state.selectedFeatures;
+        selectedFeatures[id-1].selected = event.target.checked;
+        this.setState({selectedFeatures: selectedFeatures});    
+    };
+    
     render() {
+        // Creation of brand items
         const brands = this.state.brands.map(brand => {
             return <MenuItem key={brand.id} value={brand.id}>{brand.name}</MenuItem>
         });
         
         let models = null;
         
+        // Creation of model items
         if (this.state.withBrand) {
             models = this.state.models.map(model => {
                 return <MenuItem key={model.id} value={model.id}>{model.name}</MenuItem>
             });
         }
         
+        // Creation of feature items
+        const features = this.state.selectedFeatures.map(feature => {
+           return <Grid key={feature.id} item>
+                <FormControlLabel
+                    control={
+                        <Checkbox 
+                            checked={feature.selected} 
+                            value={feature.id.toString()} 
+                            onChange={this.handleFeatureChange(feature.id)} />
+                    }
+                    label={feature.name}
+                />
+            </Grid>
+        });
+        
         return (
-            <Grid container justify="flex-start">
+            <Grid container direction="column">
                 <form className={this.styles.root}>
                     <Grid item xs={12}>
                         <BrandsItem
@@ -97,7 +136,9 @@ class VehicleForm extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        Hello from features
+                        <FeaturesItem
+                            featuresList={features}
+                        />
                     </Grid>
                 </form>
             </Grid>

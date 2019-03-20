@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {Grid, Paper} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 
 import VehicleForm from '../../components/Vehicle/VehicleForm';
 
@@ -16,13 +16,9 @@ class VehiclePage extends Component{
     
     render() {
         return (
-          <Grid container spacing={16}>
-              <Grid item xs={12}>
-                  <Paper style={this.styles.Paper}>
-                      <VehicleForm/>
-                  </Paper>
-              </Grid>
-          </Grid>  
+            <Paper style={this.styles.Paper}>
+                <VehicleForm/>
+            </Paper>
         );
     }
 }
