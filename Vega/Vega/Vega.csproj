@@ -27,6 +27,7 @@
         <Content Include="ClientApp\src\components\NavBar\NavItems\NavItems.js" />
         <Content Include="ClientApp\src\components\Vehicle\VehicleForm.js" />
         <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\BrandsItem.js" />
+        <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\ContactItems.js" />
         <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\FeaturesItem.js" />
         <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\ModelsItem.js" />
         <Content Include="ClientApp\src\components\Vehicle\VehicleFormItems\RegisteredItem.js" />

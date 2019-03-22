@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Checkbox, FormControlLabel, Grid, MenuItem} from "@material-ui/core";
+import {Checkbox, FormControlLabel, FormLabel, Grid, MenuItem, Paper, Typography} from "@material-ui/core";
 import axios from "axios";
 
 import BrandsItem from './VehicleFormItems/BrandsItem';
 import ModelsItem from './VehicleFormItems/ModelsItem';
 import RegisteredItem from './VehicleFormItems/RegisteredItem';
 import FeaturesItem from './VehicleFormItems/FeaturesItem';
+import ContactItems from './VehicleFormItems/ContactItems';
 
 class VehicleForm extends Component {
     static displayName = VehicleForm.name;
@@ -14,6 +15,11 @@ class VehicleForm extends Component {
         root: {
             display: 'flex',
             flexWrap: 'wrap',
+        },
+        Paper: {
+            padding: 20,
+            marginTop: 10,
+            marginBottom: 10,
         }
     };
     
@@ -115,30 +121,46 @@ class VehicleForm extends Component {
         
         return (
             <Grid container direction="column">
+                <Typography variant="h3" gutterBottom>
+                    New Vehicle
+                </Typography>
                 <form className={this.styles.root}>
                     <Grid item xs={12}>
-                        <BrandsItem
-                            valueSelected={this.state.selectedBrandId}
-                            changeBrand={this.handleBrandChange}
-                            brandsList={brands}
-                        />
-                        <ModelsItem
-                            valueSelected={this.state.selectedModelId}
-                            changeModel={this.handleModelChange}
-                            modelsList={models}
-                            isActive={this.state.withBrand}
-                        />
+                        <Paper style={this.styles.Paper}>
+                            <FormLabel component="legend">Vehicle</FormLabel>
+                            <BrandsItem
+                                valueSelected={this.state.selectedBrandId}
+                                changeBrand={this.handleBrandChange}
+                                brandsList={brands}
+                            />
+                            <ModelsItem
+                                valueSelected={this.state.selectedModelId}
+                                changeModel={this.handleModelChange}
+                                modelsList={models}
+                                isActive={this.state.withBrand}
+                            />
+                        </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <RegisteredItem
-                            isRegistered={this.state.isRegistered}
-                            changeRegister={this.handleRegisteredChange}
-                        />
+                        <Paper style={this.styles.Paper}>
+                            <RegisteredItem
+                                isRegistered={this.state.isRegistered}
+                                changeRegister={this.handleRegisteredChange}
+                            />
+                        </Paper>
                     </Grid>
                     <Grid item xs={12}>
-                        <FeaturesItem
-                            featuresList={features}
-                        />
+                        <Paper style={this.styles.Paper}>
+                            <FeaturesItem
+                                featuresList={features}
+                            />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Paper style={this.styles.Paper}>
+                            <FormLabel component="legend">Customer Contact</FormLabel>
+                            <ContactItems/>
+                        </Paper>
                     </Grid>
                 </form>
             </Grid>

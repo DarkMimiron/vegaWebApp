@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button} from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
+import {Add} from "@material-ui/icons/";
 import {Link} from "react-router-dom";
 
 const navItems = () => (
@@ -7,7 +8,9 @@ const navItems = () => (
         <Button component={Link} to="/">Home</Button>
         <Button component={Link} to="/counter">Counter</Button>
         <Button component={Link} to="/fetch-data">Fetch</Button>
-        <Button component={Link} to="/vehicles">Vehicles</Button>
+        <Button variant="contained" color="secondary" component={Link} to="/vehicles">
+            <Add/><Typography color="textSecondary" variant="button"> Vehicle</Typography>
+        </Button>
     </div>
 );
 
