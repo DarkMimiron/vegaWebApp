@@ -13,6 +13,11 @@ namespace Vega.Persistence.EntityTypeConfigurations{
 
             builder.Property(m => m.BrandId)
                 .IsRequired();
+
+            builder.HasMany(m => m.Vehicles)
+                .WithOne(v => v.Model)
+                .HasForeignKey(m => m.ModelId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

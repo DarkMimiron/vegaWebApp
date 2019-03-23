@@ -7,6 +7,7 @@ namespace Vega.Persistence{
         public DbSet<Brand> Brands{ get; set; }
         public DbSet<Model> Models{ get; set; }
         public DbSet<Feature> Features{ get; set; }
+        public DbSet<Vehicle> Vehicles{ get; set; }
         
         public VegaContext(DbContextOptions options)
             : base(options){
@@ -17,6 +18,8 @@ namespace Vega.Persistence{
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new ModelConfiguration());
             modelBuilder.ApplyConfiguration(new FeatureConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleFeatureConfiguration());
         }
     }
 }
