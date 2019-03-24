@@ -9,7 +9,7 @@ const navItems = () => (
         <Button component={Link} to="/counter">Counter</Button>
         <Button component={Link} to="/fetch-data">Fetch</Button>
         <Button variant="contained" color="secondary" component={Link} to="/vehicles">
-            <Add/><Typography color="textSecondary" variant="button"> Vehicle</Typography>
+            <Add/><Typography color="textSecondary" variant="button"> New Vehicle</Typography>
         </Button>
     </div>
 );
