@@ -37,7 +37,7 @@ namespace Vega.Persistence{
                     
                     // Add new features
                     var addedFeatures = vr.Features
-                        .Where(id => v.Features.Any(f => f.FeatureId == id))
+                        .Where(id => v.Features.All(f => f.FeatureId != id))
                         .Select(id => new VehicleFeature { FeatureId = id})
                         .ToList();
                     foreach (var f in addedFeatures)
