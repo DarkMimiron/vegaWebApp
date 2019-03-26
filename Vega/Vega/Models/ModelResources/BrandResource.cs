@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Vega.Models.ModelResources{
-    public class BrandResource{
-        public int Id{ get; set; }
-        public string Name{ get; set; }
-        public IEnumerable<ModelResource> Models{ get; set; }
+    public class BrandResource : KeyValuePairResource{
+        public ICollection<KeyValuePairResource> Models{ get; set; }
+
+        public BrandResource(){
+            Models = new Collection<KeyValuePairResource>();
+        }
     }
 }
